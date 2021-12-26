@@ -4,24 +4,30 @@
 @{ 
     Layout = "_Layout";
 }
-@model List<BlogApp.Entities.Post>
+@model List< BlogApp.Controllers.model>
 
 @foreach (var item in Model)
 	{
 <div>
-    @item.PostID
-    <br />
-    @item.PostCategory
-    <br />
-    @item.PostTitle
-    <br />
-    @item.PostAuthorName
-    <br />
-    @item.PostPublishDate
-    <br />
-    @item.PostContent
-    <br />
+    @foreach (var post in item.posts)
+    {
+        @post.PostID
+    }
+    @foreach (var category in item.categories)
+    {
+        @category.CategoryID
+    }
 </div>
 	}
 
+
+<tag text="">
+    @foreach (var item in Model)
+    {
+    @foreach (var tags in item.tags)
+    {
+        @tags.TagName
+    }
+    }
+</tag>
 
