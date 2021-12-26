@@ -12,23 +12,6 @@ using System.Threading.Tasks;
 
 namespace BlogApp.Controllers
 {
-    public class model
-    {
-        private readonly PostRepository _postRepository;
-        private readonly CategoryRepository _categoryRepository;
-        private readonly PostService _postService;
-        private readonly TagRepository _tagRepository;
-        public model(PostRepository postRepository, CategoryRepository categoryRepository, PostService postService, TagRepository tagRepository)
-        {
-            posts = _postService.OrderingPost();
-            categories = _categoryRepository.GetAllCategory();
-            tags = _tagRepository.GetAllTag();
-        }
-        public List<Post> posts { get; set; }
-        public List<Category> categories { get; set; }
-        public List<Tag> tags { get; set; }
-
-    }
 
     public class HomeController : Controller
     {
@@ -49,9 +32,9 @@ namespace BlogApp.Controllers
 
         public IActionResult Index()
         {
-            
+            var x = _postService.OrderingPost();
 
-            return View();
+            return View(x);
         }
 
         public IActionResult Privacy()

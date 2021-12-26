@@ -1,33 +1,17 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
-@{ 
+@{
     Layout = "_Layout";
 }
-@model List< BlogApp.Controllers.model>
+
+@model List<BlogApp.Entities.Post>
 
 @foreach (var item in Model)
 	{
-<div>
-    @foreach (var post in item.posts)
-    {
-        @post.PostID
-    }
-    @foreach (var category in item.categories)
-    {
-        @category.CategoryID
-    }
-</div>
+		 <div>
+			 @item.PostID
+		 </div>
 	}
 
-
-<tag text="">
-    @foreach (var item in Model)
-    {
-    @foreach (var tags in item.tags)
-    {
-        @tags.TagName
-    }
-    }
-</tag>
-
+<tag></tag>
