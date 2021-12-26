@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@{ 
+    Layout = "_Layout";
+}
+@model List<BlogApp.Entities.Post>
+
+@foreach (var item in Model)
+	{
+<div>
+    @item.PostID
+    <br />
+    @item.PostCategory
+    <br />
+    @item.PostTitle
+    <br />
+    @item.PostAuthorName
+    <br />
+    @item.PostPublishDate
+    <br />
+    @item.PostContent
+    <br />
+</div>
+	}
+
+
