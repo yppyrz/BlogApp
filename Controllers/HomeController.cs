@@ -20,19 +20,25 @@ namespace BlogApp.Controllers
         private readonly CategoryRepository _categoryRepository;
         private readonly PostService _postService;
         private readonly TagRepository _tagRepository;
+        private readonly CommentRepository _commentRepository;
 
-        public HomeController(ILogger<HomeController> logger,PostRepository postRepository,CategoryRepository categoryRepository,PostService postService,TagRepository tagRepository)
+        public HomeController(ILogger<HomeController> logger,PostRepository postRepository,CategoryRepository categoryRepository,PostService postService,TagRepository tagRepository,CommentRepository commentRepository)
         {
             _logger = logger;
             _postRepository = postRepository;
             _postService = postService;
             _categoryRepository = categoryRepository;
             _tagRepository = tagRepository;
+            _commentRepository = commentRepository;
         }
 
         public IActionResult Index()
         {
             var x = _postService.OrderingPost();
+            foreach (var item in x)
+            {
+                item.PostComments = _postService.GetComment(item.PostID);
+            }
 
             return View(x);
         }

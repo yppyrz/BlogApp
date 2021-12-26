@@ -27,6 +27,7 @@ namespace BlogApp
         {
             services.AddControllersWithViews();
             services.AddRazorPages();
+            services.AddSession();
             
             // Repositories
             services.AddScoped<PostRepository>();
@@ -59,7 +60,7 @@ namespace BlogApp
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

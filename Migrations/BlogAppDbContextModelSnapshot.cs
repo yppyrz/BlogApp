@@ -40,18 +40,21 @@ namespace BlogApp.Migrations
                     b.Property<string>("CommentContent")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("CommentPostPostID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("CommentPostID")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CommentPublishDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("PostID")
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("UserName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CommentID");
 
-                    b.HasIndex("CommentPostPostID");
+                    b.HasIndex("PostID");
 
                     b.ToTable("Comments");
                 });
@@ -61,11 +64,17 @@ namespace BlogApp.Migrations
                     b.Property<string>("PostID")
                         .HasColumnType("nvarchar(450)");
 
+                    b.Property<string>("CategoryID")
+                        .HasColumnType("nvarchar(450)");
+
                     b.Property<string>("PostAuthorName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("PostCategoryCategoryID")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<string>("PostCategoryID")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostCategoryName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PostContent")
                         .HasColumnType("nvarchar(max)");
@@ -78,7 +87,7 @@ namespace BlogApp.Migrations
 
                     b.HasKey("PostID");
 
-                    b.HasIndex("PostCategoryCategoryID");
+                    b.HasIndex("CategoryID");
 
                     b.ToTable("Posts");
                 });
@@ -113,20 +122,16 @@ namespace BlogApp.Migrations
 
             modelBuilder.Entity("BlogApp.Entities.Comment", b =>
                 {
-                    b.HasOne("BlogApp.Entities.Post", "CommentPost")
+                    b.HasOne("BlogApp.Entities.Post", null)
                         .WithMany("PostComments")
-                        .HasForeignKey("CommentPostPostID");
-
-                    b.Navigation("CommentPost");
+                        .HasForeignKey("PostID");
                 });
 
             modelBuilder.Entity("BlogApp.Entities.Post", b =>
                 {
-                    b.HasOne("BlogApp.Entities.Category", "PostCategory")
+                    b.HasOne("BlogApp.Entities.Category", null)
                         .WithMany("CategoryPosts")
-                        .HasForeignKey("PostCategoryCategoryID");
-
-                    b.Navigation("PostCategory");
+                        .HasForeignKey("CategoryID");
                 });
 
             modelBuilder.Entity("PostTag", b =>

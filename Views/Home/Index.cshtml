@@ -4,14 +4,56 @@
 @{
     Layout = "_Layout";
 }
-
 @model List<BlogApp.Entities.Post>
 
-@foreach (var item in Model)
-	{
-		 <div>
-			 @item.PostID
-		 </div>
-	}
 
-<tag></tag>
+
+@foreach (var item in Model)
+{
+    <section class="blog-posts">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="all-blog-posts">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="blog-post">
+                                    <div class="blog-thumb">
+                                    </div>
+                                    <div class="down-content">
+                                        <span>@item.PostCategoryName</span>
+                                        <a href="post-details.html"><h4>@item.PostTitle</h4></a>
+                                        <ul class="post-info">
+                                            <li><a>@item.PostAuthorName</a></li>
+                                            <li><a>@item.PostPublishDate.ToShortDateString()</a></li>
+                                            <li><a>@item.PostComments.Count</a></li>
+                                        </ul>
+                                        <p>@item.PostContent<a rel="nofollow" href="https://templatemo.com/contact" target="_parent"></a></p>
+                                        <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-6">
+                                                    <ul class="post-tags">
+                                                        <li><i class="fa fa-tags"></i></li>
+                                                        <li><a href="#">Beauty</a>,</li>
+                                                        <li><a href="#">Nature</a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+}
+
+
+
+
+
+
+

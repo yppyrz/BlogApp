@@ -10,10 +10,12 @@ namespace BlogApp.Services
     public class PostService
     {
         PostRepository _postRepository;
+        CommentRepository _commentRepository;
 
-        public PostService(PostRepository postRepository)
+        public PostService(PostRepository postRepository,CommentRepository commentRepository)
         {
             _postRepository = postRepository;
+            _commentRepository = commentRepository;
         }
 
         /// <summary>
@@ -38,16 +40,6 @@ namespace BlogApp.Services
             _postRepository.UpdatePost(post);
         }
 
-        /// <summary>
-        /// Post'a category tanımlar
-        /// </summary>
-        /// <param name="post"></param>
-        /// <param name="category"></param>
-        public void AddCategory(Post post, Category category)
-        {
-            post.PostCategory = category;
-            _postRepository.UpdatePost(post);
-        }
 
         /// <summary>
         /// Post'a comment ekler
@@ -87,6 +79,15 @@ namespace BlogApp.Services
         public List<Post> OrderingPost()
         {
             return _postRepository.GetAllPost().OrderByDescending(x => x.PostPublishDate).ToList();
+        }
+
+
+
+        public List<Comment> GetComment(string id)
+        {
+            var x = _commentRepository.GetAllComment();
+            x = x.Where(x => x.CommentPostID == id).ToList();
+            return x;
         }
     }
 }

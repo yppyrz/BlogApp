@@ -12,9 +12,10 @@ namespace BlogApp.Entities
         public string PostTitle { get; set; } // Post başlığı
         public string PostAuthorName { get; set; } // Post yazarının adı
 
-        public Category PostCategory { get; set; } // Postun içeriğinin uygun olduğu kategori. Postun sadece bir adet kategorisi olabilir
-        public List<Tag> PostTags { get; set; } // Postun birçok tagi olabilir
-        public List<Comment> PostComments { get; set; } // Postun birçok commenti olabilir
+        public string PostCategoryID { get; set; } // Postun içeriğinin uygun olduğu kategori. Postun sadece bir adet kategorisi olabilir
+        public string PostCategoryName { get; set; }
+        public List<Tag> PostTags { get; set; } = new List<Tag>(); // Postun birçok tagi olabilir
+        public List<Comment> PostComments { get; set; } = new List<Comment>(); // Postun birçok commenti olabilir
 
         public DateTime PostPublishDate { get; set; } // Postun yayımlandığı tarih 
     }

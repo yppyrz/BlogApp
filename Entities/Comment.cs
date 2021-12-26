@@ -11,7 +11,7 @@ namespace BlogApp.Entities
         public string CommentContent { get; set; } // Comment içeriği
         public string UserName { get; set; } // Comment'i atan kişi
 
-        public Post CommentPost { get; set; } // Comment'in sadece bir tane postu olabilir
+        public string CommentPostID { get; set; } // Comment'in sadece bir tane postu olabilir
         public DateTime CommentPublishDate { get; set; } // Comment'in atıldığı tarih
     }
 }

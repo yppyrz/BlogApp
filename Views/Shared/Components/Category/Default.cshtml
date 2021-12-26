@@ -5,12 +5,25 @@
 
 @model List<CategoryViewModel>
 
-@foreach (var item in Model)
-{
-<div>
-    Categories =>
-    @item.CategoryID
-    @item.CategoryName
-    <hr />
+
+<div class="sidebar">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="sidebar-item categories">
+                <div class="sidebar-heading">
+                    <h2>Categories</h2>
+                </div>
+                <div class="content">
+                    <ul>
+                        @foreach (var category in Model)
+                        {
+            <li>
+                <a href="?filter=@category.CategoryID&Type=Category">@category.CategoryName</a>
+            </li>}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
-}
+        

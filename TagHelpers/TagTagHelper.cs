@@ -32,7 +32,7 @@ namespace BlogApp.TagHelpers
             {
                 x += item.TagName;
             }
-            output.Content.SetHtmlContent($@"<tag>{x}<tag>");
+            output.Content.SetHtmlContent($@"<tag><div>{x}</div><tag>");
 
             base.Process(context, output);
         }

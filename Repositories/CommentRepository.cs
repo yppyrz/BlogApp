@@ -25,5 +25,9 @@ namespace BlogApp.Repositories
             _db.Comments.Add(comment);
             _db.SaveChanges();
         }
+        public List<Comment> GetAllComment()
+        {
+            return _db.Comments.ToList();
+        }
     }
 }
