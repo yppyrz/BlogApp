@@ -34,8 +34,11 @@
                                                 <div class="col-6">
                                                     <ul class="post-tags">
                                                         <li><i class="fa fa-tags"></i></li>
-                                                        <li><a href="#">Beauty</a>,</li>
-                                                        <li><a href="#">Nature</a></li>
+                                                        @foreach (var tag in item.PostTags)
+                                                        {
+                                                                <li><a>@tag.TagName</a></li>
+                                                            
+                                                        }
                                                     </ul>
                                                 </div>
                                             </div>

@@ -38,6 +38,7 @@ namespace BlogApp.Controllers
             foreach (var item in x)
             {
                 item.PostComments = _postService.GetComment(item.PostID);
+
             }
 
             return View(x);
