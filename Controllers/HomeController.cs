@@ -72,9 +72,22 @@ namespace BlogApp.Controllers
             return View(x);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Privacy(string id)
         {
-            return View();
+            var z = new Post();
+            var x = _postService.OrderingPost();
+            foreach (var item in x)
+            {
+                item.PostComments = _postService.GetComment(item.PostID);
+                item.PostTags = _postService.GetTag(item.PostID);
+                if (item.PostID == id)
+                {
+                    z = item;
+                }
+            }
+
+
+            return View(z);
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
