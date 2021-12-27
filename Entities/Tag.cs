@@ -9,7 +9,5 @@ namespace BlogApp.Entities
     {
         public string TagID { get; set; } = Guid.NewGuid().ToString();
         public string TagName { get; set; }
-
-        public List<Post> TagPosts { get; set; } = new List<Post>(); // Tag'in birçok postu olabilir
     }
 }

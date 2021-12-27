@@ -24,15 +24,15 @@ namespace BlogApp.TagHelpers
             var x = "";
             var list = _tagRepository.GetAllTag();
             //<p style="text-align:center">${Content}</p>
-            output.TagName = "tag";
+            output.TagName = "p";
             output.Attributes.Add("style", "text-align:center");
             output.Attributes.Add("text", list);
             
             foreach (var item in list)
             {
-                x += item.TagName;
+                x += $"<a href ='{item.TagID}'> {item.TagName} </a >";
             }
-            output.Content.SetHtmlContent($@"<tag><div>{x}</div><tag>");
+            output.Content.AppendHtml($@"<div class='col-lg-4'><div class='sidebar'><div class='row'><div class='col-lg-12'><div class='sidebar-item tags'><div class='sidebar-heading'><h2>Tag Clouds</h2></div><div class='content'><ul><li>{x}</li ></ul ></div ></div ></div ></div ></div ></div >");
 
             base.Process(context, output);
         }

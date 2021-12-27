@@ -11,8 +11,8 @@ namespace BlogApp.Databae
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=.;Database=BlogDb;uid=sa;pwd=1234;");
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-O23KDVQ;Database=BlogAppDb;Trusted_Connection=True;");
+            optionsBuilder.UseSqlServer(@"Server=.;Database=BlogAppDb;uid=sa;pwd=1234;");
+            //optionsBuilder.UseSqlServer(@"Server=DESKTOP-O23KDVQ;Database=BlogAppDb;Trusted_Connection=True;");
 
             base.OnConfiguring(optionsBuilder);
 
@@ -22,6 +22,7 @@ namespace BlogApp.Databae
         public DbSet<Category> Categories { get; set; }
         public DbSet<Tag> Tags { get; set; }
         public DbSet<Comment> Comments { get; set; }
+        public DbSet<PostTagRelation> Relations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

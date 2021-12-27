@@ -33,6 +33,12 @@ namespace BlogApp.Repositories
         public List<Tag> GetAllTag()
         {
             return _db.Tags.ToList();
+            
+        }
+
+        public Tag FindTag(string Id)
+        {
+            return _db.Tags.Find(Id);
         }
     }
 }

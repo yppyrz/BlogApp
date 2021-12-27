@@ -17,8 +17,6 @@ namespace BlogApp.Entities
         public List<Tag> PostTags { get; set; } = new List<Tag>(); // Postun birçok tagi olabilir
         public List<Comment> PostComments { get; set; } = new List<Comment>(); // Postun birçok commenti olabilir
 
-        public List<string> PostTagList { get; set; } = new List<string>();
-
         public DateTime PostPublishDate { get; set; } // Postun yayımlandığı tarih 
     }
 }

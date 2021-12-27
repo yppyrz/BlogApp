@@ -4,14 +4,16 @@ using BlogApp.Databae;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlogApp.Migrations
 {
     [DbContext(typeof(BlogAppDbContext))]
-    partial class BlogAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211227132721_27122021")]
+    partial class _27122021
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,22 +92,6 @@ namespace BlogApp.Migrations
                     b.HasIndex("CategoryID");
 
                     b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("BlogApp.Entities.PostTagRelation", b =>
-                {
-                    b.Property<string>("RelationID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PostID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TagID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RelationID");
-
-                    b.ToTable("Relations");
                 });
 
             modelBuilder.Entity("BlogApp.Entities.Tag", b =>

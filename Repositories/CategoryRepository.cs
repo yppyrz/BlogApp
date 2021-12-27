@@ -33,6 +33,7 @@ namespace BlogApp.Repositories
         public List<Category> GetAllCategory()
         {
             return _db.Categories.ToList();
+            
         }
     }
 }

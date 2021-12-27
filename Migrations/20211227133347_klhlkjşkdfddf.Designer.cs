@@ -4,14 +4,16 @@ using BlogApp.Databae;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlogApp.Migrations
 {
     [DbContext(typeof(BlogAppDbContext))]
-    partial class BlogAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211227133347_klhlkjşkdfddf")]
+    partial class klhlkjşkdfddf
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

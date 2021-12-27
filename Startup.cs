@@ -34,6 +34,7 @@ namespace BlogApp
             services.AddScoped<CategoryRepository>();
             services.AddScoped<TagRepository>();
             services.AddScoped<CommentRepository>();
+            services.AddScoped<RelationRepository>();
 
             // Services
             services.AddTransient<PostService>();

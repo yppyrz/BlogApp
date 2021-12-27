@@ -12,12 +12,16 @@ namespace BlogApp.Services
         PostRepository _postRepository;
         CommentRepository _commentRepository;
         TagRepository _tagRepository;
+        RelationRepository _relationRepository;
 
-        public PostService(PostRepository postRepository,CommentRepository commentRepository,TagRepository tagRepository)
+
+        public PostService(PostRepository postRepository,CommentRepository commentRepository,TagRepository tagRepository,RelationRepository relationRepository)
         {
             _postRepository = postRepository;
             _commentRepository = commentRepository;
             _tagRepository=tagRepository;
+            _relationRepository = relationRepository;
+
         }
 
         /// <summary>
@@ -94,18 +98,18 @@ namespace BlogApp.Services
 
         public List<Tag> GetTag(string id)
         {
-            var x = _tagRepository.GetAllTag();
+            var x = _relationRepository.GetAll();
             var y = new List<Tag>();
+
             foreach (var item in x)
             {
-                foreach (var post in item.TagPosts)
+                if (item.PostID == id)
                 {
-                    if (post.PostID==id)
-                    {
-                        y.Add(item);
-                    }
+                    var z = _tagRepository.FindTag(item.TagID);
+                    y.Add(z);
                 }
             }
+
             return y;
         }
     }

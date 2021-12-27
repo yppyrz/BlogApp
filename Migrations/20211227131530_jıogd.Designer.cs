@@ -4,14 +4,16 @@ using BlogApp.Databae;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BlogApp.Migrations
 {
     [DbContext(typeof(BlogAppDbContext))]
-    partial class BlogAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20211227131530_jıogd")]
+    partial class jıogd
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -89,23 +91,7 @@ namespace BlogApp.Migrations
 
                     b.HasIndex("CategoryID");
 
-                    b.ToTable("Posts");
-                });
-
-            modelBuilder.Entity("BlogApp.Entities.PostTagRelation", b =>
-                {
-                    b.Property<string>("RelationID")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("PostID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("TagID")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RelationID");
-
-                    b.ToTable("Relations");
+                    b.ToTable("Post");
                 });
 
             modelBuilder.Entity("BlogApp.Entities.Tag", b =>
@@ -113,17 +99,27 @@ namespace BlogApp.Migrations
                     b.Property<string>("TagID")
                         .HasColumnType("nvarchar(450)");
 
-                    b.Property<string>("PostID")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<string>("TagName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TagID");
 
-                    b.HasIndex("PostID");
-
                     b.ToTable("Tags");
+                });
+
+            modelBuilder.Entity("PostTag", b =>
+                {
+                    b.Property<string>("PostTagsTagID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("TagPostsPostID")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PostTagsTagID", "TagPostsPostID");
+
+                    b.HasIndex("TagPostsPostID");
+
+                    b.ToTable("PostTag");
                 });
 
             modelBuilder.Entity("BlogApp.Entities.Comment", b =>
@@ -140,11 +136,19 @@ namespace BlogApp.Migrations
                         .HasForeignKey("CategoryID");
                 });
 
-            modelBuilder.Entity("BlogApp.Entities.Tag", b =>
+            modelBuilder.Entity("PostTag", b =>
                 {
+                    b.HasOne("BlogApp.Entities.Tag", null)
+                        .WithMany()
+                        .HasForeignKey("PostTagsTagID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("BlogApp.Entities.Post", null)
-                        .WithMany("PostTags")
-                        .HasForeignKey("PostID");
+                        .WithMany()
+                        .HasForeignKey("TagPostsPostID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("BlogApp.Entities.Category", b =>
@@ -155,8 +159,6 @@ namespace BlogApp.Migrations
             modelBuilder.Entity("BlogApp.Entities.Post", b =>
                 {
                     b.Navigation("PostComments");
-
-                    b.Navigation("PostTags");
                 });
 #pragma warning restore 612, 618
         }
