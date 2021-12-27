@@ -72,8 +72,21 @@ namespace BlogApp.Controllers
             return View(x);
         }
 
-        public IActionResult Privacy(string id)
+        public IActionResult Privacy(string id,string name,string message)
         {
+            if (!(string.IsNullOrEmpty(name) && string.IsNullOrEmpty(message)))
+            {
+                Comment postComment = new Comment();
+                //Comment
+                postComment.CommentID = Guid.NewGuid().ToString();
+                postComment.CommentPostID = id;
+                postComment.CommentPublishDate = DateTime.Now;
+                postComment.CommentContent = message;
+                postComment.UserName = name;
+                _commentRepository.AddCommnet(postComment);
+            }
+
+
             var z = new Post();
             var x = _postService.OrderingPost();
             foreach (var item in x)
@@ -85,9 +98,11 @@ namespace BlogApp.Controllers
                     z = item;
                 }
             }
-
-
             return View(z);
+        }
+        public IActionResult ContactUs()
+        {
+            return View();
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
