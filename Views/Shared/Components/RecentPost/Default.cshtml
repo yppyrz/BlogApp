@@ -23,7 +23,7 @@
                         @foreach (var recentPost in Model)
                          {
                             <li>
-                                <a href="PostDetails?postId=@recentPost.PostID">
+                                <a href="PostDetails?id=@recentPost.PostID">
                                     <h5>@recentPost.PostTitle</h5>
                                     <span>@recentPost.PublishDate.ToShortDateString()</span>
                                 </a>

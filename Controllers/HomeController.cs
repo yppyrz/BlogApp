@@ -32,15 +32,43 @@ namespace BlogApp.Controllers
             _commentRepository = commentRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(string id,string type)
         {
+            var y = new List<Post>();
             var x = _postService.OrderingPost();
-            foreach (var item in x)
+                foreach (var item in x)
+                {
+                    item.PostComments = _postService.GetComment(item.PostID);
+                    item.PostTags = _postService.GetTag(item.PostID);
+                }
+            
+            if (type == "Category")
             {
-                item.PostComments = _postService.GetComment(item.PostID);
-                item.PostTags = _postService.GetTag(item.PostID);
-            }
 
+                foreach (var item in x)
+                {
+                    if (item.PostCategoryID == id)
+                    {
+                        y.Add(item);
+                        x = y;
+                    }
+
+                }
+            }
+            if (type == "Tag")
+            {
+                foreach (var item in x)
+                {
+                    foreach (var tags in item.PostTags)
+                    {
+                        if (tags.TagID == id)
+                        {
+                            y.Add(item);
+                            x = y;
+                        }
+                    }
+                }
+            }
             return View(x);
         }
 

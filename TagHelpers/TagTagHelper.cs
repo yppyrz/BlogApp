@@ -30,7 +30,7 @@ namespace BlogApp.TagHelpers
             
             foreach (var item in list)
             {
-                x += $"<a href ='{item.TagID}'> {item.TagName} </a >";
+                x += $"<a href ='Home?id={item.TagID}&Type=Tag'> {item.TagName} </a >";
             }
             output.Content.AppendHtml($@"<div class='sidebar'><div class='row'><div class='col-lg-12'><div class='sidebar-item tags'><div class='sidebar-heading'><h2>Tag Clouds</h2></div><div class='content'><ul><li>{x}</li ></ul ></div ></div ></div ></div ></div >");
 
